@@ -27,6 +27,10 @@ public class Background implements DrawingObject{
 
         ground = new Rectangle(0, 330, width, 400, groundColor);
         ground.draw(g2d);
+
+        g2d.setTransform(reset);
         
     }
+
+    // another comment for github verify change
 }
