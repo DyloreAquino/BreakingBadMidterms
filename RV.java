@@ -4,21 +4,20 @@ import java.awt.geom.*;
 public class RV implements DrawingObject {
 
     public Rectangle body, front2Van, doorpassage, door, window3, window4, backTopVent, middleTopVent;
-    public Circle windowBack, middleTopVent1, middleTopVent2;
+    public Circle windowBack, middleTopVent1, middleTopVent2, bulletHole1, bulletHole2;
     public Line frontmid2Window, topStrip, middleStrip, botStrip, sideStrip1, sideStrip2;
     public Square doorOutline, frontTopVent;
 
-    public Color color1 = new Color(252, 203, 172);
+    public Color colorBulletHole = new Color(88, 60, 24);
     public Color colorBody = new Color(189, 159, 121);
-    public Color color3 = new Color(255, 166, 110);
-    public Color color4 = new Color(46, 44, 42);
-    public Color color5 = new Color(237, 213, 190);
-    public Color color6 = new Color(99, 91, 84);
-    public Color color7 = new Color(92, 88, 84);
+    public Color colorDoorPassage = new Color(41, 7, 7);
+    public Color colorDoor = new Color(165, 136, 98);
+    public Color colorDoorWindow = new Color(188, 159, 119);
     public Color colorWindow = new Color(35, 6, 2);
     public Color color2Window = new Color(34, 4, 6);
-    public Color colorRedStrip = new Color(125, 38, 30);
-    public Color colorYellowStrip = new Color(191, 137, 42);
+    public Color colorRedStrip = new Color(120, 33, 23);
+    public Color colorBlackStrip = new Color(38, 6, 0);
+    public Color colorYellowStrip = new Color(183, 108, 39);
     public Color colorTopVents = new Color(89, 59, 33);
 
     public int x, y;
@@ -91,25 +90,41 @@ public class RV implements DrawingObject {
         sideStrip2 = new Line(x + 109, y + 300, x + 585, y + 300,  10, colorRedStrip);
         sideStrip2.draw(g2d);
 
-        doorpassage = new Rectangle(x + 255, y + 215,  45,  100, color4);
+        doorpassage = new Rectangle(x + 255, y + 215,  45,  100, colorDoorPassage);
         doorpassage.draw(g2d);
 
-        door = new Rectangle(x + 209, y + 215,  45,  100, color5);
+        door = new Rectangle(x + 209, y + 215,  45,  100, colorDoor);
         door.draw(g2d);
 
-        doorOutline = new Square(x + 219, y + 224,  25, color6);
+        bulletHole1 = new Circle(x + 220, y + 270, 4, colorBulletHole);
+        bulletHole1.draw(g2d);
+        g2d.translate(20, -3);
+        bulletHole1.draw(g2d);
+        g2d.translate(-5, 20);
+        bulletHole1.draw(g2d);
+
+        g2d.setTransform(reset);
+
+        bulletHole2 = new Circle(x + 230, y + 274, 5, colorBulletHole);
+        bulletHole2.draw(g2d);
+        g2d.translate(-17, 16);
+        bulletHole2.draw(g2d);
+
+        g2d.setTransform(reset);
+
+        doorOutline = new Square(x + 219, y + 224,  25, colorDoorWindow);
         doorOutline.draw(g2d);
         
         window3 = new Rectangle(x + 305, y + 215,  75,  45, colorWindow);
         window3.draw(g2d);
 
-        topStrip = new Line(x + 204, y + 180, x + 581, y + 180,  10, colorRedStrip);
+        topStrip = new Line(x + 204, y + 182, x + 581, y + 182,  9, colorBlackStrip);
         topStrip.draw(g2d);
 
-        middleStrip = new Line(x + 202, y + 190, x + 630, y + 190,  6, colorYellowStrip);
+        middleStrip = new Line(x + 203, y + 190, x + 620, y + 190,  7, colorYellowStrip);
         middleStrip.draw(g2d);
 
-        botStrip = new Line(x + 204, y + 200, x + 636, y + 200,  10, colorRedStrip);
+        botStrip = new Line(x + 204, y + 197, x + 630, y + 197,  10, colorRedStrip);
         botStrip.draw(g2d);
 
         window4 = new Rectangle(x + 459, y + 215,  107,  65, colorWindow);
@@ -118,6 +133,8 @@ public class RV implements DrawingObject {
         windowBack = new Circle(x + 579, y + 214,  49, color2Window);
         windowBack.draw(g2d);
 
+
+
         //this is for evident change in gtihub
 
         
@@ -125,7 +142,7 @@ public class RV implements DrawingObject {
 
 
         
-        
+        g2d.setTransform(reset);
     }
     
 }

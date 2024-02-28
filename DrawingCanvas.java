@@ -14,8 +14,10 @@ public class DrawingCanvas extends JComponent{
         height = h;
         drawingObjects = new ArrayList<DrawingObject>();
         drawingObjects.add(new Background(w, 400));
-        drawingObjects.add(new RV(-50, 50, 3));
-        
+        drawingObjects.add(new GrassBackground(30, 310));
+        drawingObjects.add(new GrassBackground(450, 310));
+        drawingObjects.add(new RV(-50, 50, 1));
+        drawingObjects.add(new MiddleGround(0, 0, width, height));
     }
 
     @Override
