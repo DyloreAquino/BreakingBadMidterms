@@ -17,7 +17,7 @@ public class MiddleGround implements DrawingObject {
     }
 
     public void draw(Graphics2D g2d){
-        middleGround = new Rectangle(x + 0, y + 370, 800, 600, groundColor);
+        middleGround = new Rectangle(x + 0, y + 368, 800, 600, groundColor);
         middleGround.draw(g2d);
     }
 }

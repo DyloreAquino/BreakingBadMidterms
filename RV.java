@@ -4,7 +4,7 @@ import java.awt.geom.*;
 public class RV implements DrawingObject {
 
     public Rectangle body, front2Van, doorpassage, door, window3, window4, backTopVent, middleTopVent;
-    public Circle windowBack, middleTopVent1, middleTopVent2, bulletHole1, bulletHole2;
+    public Circle windowBack, middleTopVent1, middleTopVent2, bulletHole1, bulletHole2, wheel;
     public Line frontmid2Window, topStrip, middleStrip, botStrip, sideStrip1, sideStrip2;
     public Square doorOutline, frontTopVent;
 
@@ -19,6 +19,7 @@ public class RV implements DrawingObject {
     public Color colorBlackStrip = new Color(38, 6, 0);
     public Color colorYellowStrip = new Color(183, 108, 39);
     public Color colorTopVents = new Color(89, 59, 33);
+    public Color colorWheel = new Color(77, 36, 17);
 
     public int x, y;
     public int size;
@@ -132,6 +133,13 @@ public class RV implements DrawingObject {
 
         windowBack = new Circle(x + 579, y + 214,  49, color2Window);
         windowBack.draw(g2d);
+
+        wheel = new Circle(x + 150, y + 310, 50, colorWheel);
+        wheel.draw(g2d);
+        g2d.translate(340, 0);
+        wheel.draw(g2d);
+
+
 
 
 
