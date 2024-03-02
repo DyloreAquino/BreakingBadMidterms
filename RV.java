@@ -30,6 +30,18 @@ public class RV implements DrawingObject {
         this.size = size;
     }
 
+    public void moveRight(){
+
+        x += 5;
+
+    }
+
+    public void moveLeft(){
+
+        x -= 5;
+
+    } 
+
     public void draw(Graphics2D g2d){
 
         AffineTransform reset = g2d.getTransform();
