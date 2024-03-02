@@ -3,18 +3,20 @@ import java.awt.geom.*;
 import javax.swing.*;
 import java.util.*;
 
-public class DrawingCanvas extends JComponent{
+public class SceneCanvas extends JComponent{
 
     public int width;
     public int height;
     public ArrayList<DrawingObject> drawingObjects;
+    public RV rv;
 
-    public DrawingCanvas(int w, int h){
+    public SceneCanvas(int w, int h){
         width = w;
         height = h;
+        rv = new RV(-50, 50, 3); 
         drawingObjects = new ArrayList<DrawingObject>();
         drawingObjects.add(new Background(w, 400));
-        drawingObjects.add(new RV(-50, 50, 3));
+        drawingObjects.add(rv);
         
     }
 
@@ -33,6 +35,11 @@ public class DrawingCanvas extends JComponent{
             obj.draw(g2d);
         }
    
+    }
+
+    public RV getRv(){
+
+        return rv;
     }
     
 }
