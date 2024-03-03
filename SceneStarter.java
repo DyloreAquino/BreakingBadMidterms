@@ -8,6 +8,7 @@ public class SceneStarter {
         sf.setUpGUI();
         sf.setUpKeyListen();
         sf.setUpTimeListen();
+        sf.setUpKeyListenforAudio();
 
     }
     
