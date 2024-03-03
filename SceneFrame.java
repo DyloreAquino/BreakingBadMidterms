@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import javax.swing.Timer;
 
 public class SceneFrame {
 
@@ -27,16 +28,21 @@ public class SceneFrame {
         frame.setVisible(true);
     }
 
-    public void setupKeyListen() {
+    public void setUpKeyListen() {
 
         KeyListener keyListen = new KeyListener() {
 
             @Override
-            public void keyTyped(KeyEvent e) {
+            public void keyTyped(KeyEvent ke) {
+
+            }
+
+            @Override
+            public void keyPressed(KeyEvent ke) {
 
                 RV brbad_rv = scneCanvas.getRv();
 
-                switch (e.getKeyChar()) {
+                switch (ke.getKeyChar()) {
                     case 'a':
 
                         brbad_rv.moveLeft();
@@ -57,12 +63,7 @@ public class SceneFrame {
             }
 
             @Override
-            public void keyPressed(KeyEvent e) {
-
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
+            public void keyReleased(KeyEvent ke) {
 
             }
 
@@ -70,6 +71,22 @@ public class SceneFrame {
 
         frame.addKeyListener(keyListen);
 
+    }
+
+    public void setUpTimeListen() {
+        class TimeListener implements ActionListener {
+
+            @Override
+            public void actionPerformed( ActionEvent ae ) {
+                scneCanvas.getFG().moveRight();
+                scneCanvas.repaint();
+                scneCanvas.makeNewFG();
+            }
+        };
+
+        ActionListener timeListener = new TimeListener();
+        Timer timer = new Timer(1, timeListener);
+        timer.start();
     }
 
     

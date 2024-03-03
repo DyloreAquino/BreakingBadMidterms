@@ -6,7 +6,8 @@ public class SceneStarter {
         
         SceneFrame sf = new SceneFrame();
         sf.setUpGUI();
-        sf.setupKeyListen();
+        sf.setUpKeyListen();
+        sf.setUpTimeListen();
 
     }
     
