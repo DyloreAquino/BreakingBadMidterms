@@ -4,13 +4,14 @@ import javax.swing.*;
 
 public class Foreground implements DrawingObject{
 
-    public int x, y;
+    public int x, y, state;
 
     public Color foregroundColor = new Color(108, 63, 22);
 
-    public Foreground(int x, int y){
+    public Foreground(int x, int y, int state){
         this.x = x;
         this.y = y;
+        this.state = state;
     }
 
     public void moveRight() {
@@ -51,14 +52,27 @@ public class Foreground implements DrawingObject{
 
         g2d.setStroke(new BasicStroke(5));
         g2d.setColor(foregroundColor);
-        g2d.draw(grass1);
-        g2d.draw(grass2);
-        g2d.draw(grass3);
-        g2d.draw(grass4);
-        g2d.draw(grass5);
+        
+        switch (state) {
+            case 0:
+                g2d.draw(grass1);
+                break;
+            case 1:
+                g2d.draw(grass2);
+                break;
+            case 2:
+                g2d.draw(grass3);
+                break;
+            case 3:
+                g2d.draw(grass4);
+                break;
+            case 4:
+                g2d.draw(grass5);
+                break
+        }
 
         g2d.setTransform(reset);
     }
-
+    
     
 }

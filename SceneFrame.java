@@ -1,19 +1,21 @@
 import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
-
+import java.util.*;
 import javax.swing.*;
 
 public class SceneFrame {
 
     private JFrame frame;
     private SceneCanvas scneCanvas;
+    private ArrayList<Foreground> fgObjects;
 
     public SceneFrame() {
 
         frame = new JFrame();
         scneCanvas = new SceneCanvas(800, 600);
-
+        fgObjects = scneCanvas.getFG();
+    
     }
 
     public void setUpGUI() {
@@ -284,7 +286,11 @@ public class SceneFrame {
             public void actionPerformed( ActionEvent ae ) {
                 scneCanvas.getFG().moveRight();
                 scneCanvas.repaint();
-                scneCanvas.makeNewFG();
+                for ( Foreground obj: fgObjects ) {
+                    if (obj.getXValue() > 800) {
+                        scneCanvas.makeNewFG();
+                    }
+                }
             }
         };
 
