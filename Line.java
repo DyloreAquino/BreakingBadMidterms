@@ -27,5 +27,9 @@ public class Line implements DrawingObject{
         
 
     }
+
+    public String getType() {
+        return "Line";
+    }
     
 }

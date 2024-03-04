@@ -21,5 +21,9 @@ public class Circle implements DrawingObject{
         g2d.fill(cir);
 
     }
+
+    public String getType() {
+        return "Circle";
+    }
     
 }

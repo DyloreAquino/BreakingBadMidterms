@@ -51,4 +51,8 @@ public class Rectangle implements DrawingObject{
         g2d.setPaint(skyGradientPaint);
         g2d.fill(rec);
     }
+
+    public String getType() {
+        return "Rectangle";
+    }
 }

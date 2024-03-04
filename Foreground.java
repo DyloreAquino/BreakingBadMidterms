@@ -1,15 +1,19 @@
 import java.awt.*;
 import java.awt.geom.*;
 import javax.swing.*;
+import java.util.Random;
 
 public class Foreground implements DrawingObject{
 
     public int x, y, state;
+    public Random rand;
 
     public Color foregroundColor = new Color(108, 63, 22);
 
     public Foreground(int x, int y, int state){
-        this.x = x;
+        // With assistance from Martin Darius Alba
+        rand = new Random();
+        this.x = x - rand.nextInt(800);
         this.y = y;
         this.state = state;
     }
@@ -18,6 +22,10 @@ public class Foreground implements DrawingObject{
 
         x += 5;
 
+    }
+
+    public void resetPosition() {
+        x = rand.nextInt(-1200, -400);
     }
 
     public int getXValue() {
@@ -31,24 +39,24 @@ public class Foreground implements DrawingObject{
         AffineTransform reset = g2d.getTransform();
 
         Path2D.Double grass1 = new Path2D.Double();
-        grass1.moveTo(x + 0, y + 600);
+        grass1.moveTo(x, y + 600);
         grass1.curveTo(x + 142, y - 58, x + 134, y - 262, x + 101, y - 310);
         
         Path2D.Double grass2 = new Path2D.Double();
-        grass2.moveTo(x + 300, y + 600);
-        grass2.curveTo(x + 142, y - 58, x + 100, y - 262, x + 299, y - 285);
+        grass2.moveTo(x, y + 600);
+        grass2.curveTo(x - 158, y - 58, x - 200, y - 262, x - 1, y - 285);
 
         Path2D.Double grass3 = new Path2D.Double();
-        grass3.moveTo(x + 465, y + 600);
-        grass3.curveTo(x + 628, y - 140, x + 676, y - 457, x + 443, y - 251);
+        grass3.moveTo(x, y + 600);
+        grass3.curveTo(x + 328, y - 140, x + 376, y - 457, x + 143, y - 251);
 
         Path2D.Double grass4 = new Path2D.Double();
-        grass4.moveTo(x + 720, y + 600);
-        grass4.curveTo(x + 628, y - 140, x + 766, y - 280, x + 947, y - 206);
+        grass4.moveTo(x, y + 600);
+        grass4.curveTo(x + 328, y - 140, x + 466, y - 280, x + 647, y - 206);
 
         Path2D.Double grass5 = new Path2D.Double();
-        grass5.moveTo(x + 474, y + 600);
-        grass5.curveTo(x + 402, y - 87, x + 457, y - 153, x + 400, y - 233);
+        grass5.moveTo(x, y + 600);
+        grass5.curveTo(x + 102, y - 87, x + 157, y - 153, x + 100, y - 233);
 
         g2d.setStroke(new BasicStroke(5));
         g2d.setColor(foregroundColor);
@@ -68,11 +76,13 @@ public class Foreground implements DrawingObject{
                 break;
             case 4:
                 g2d.draw(grass5);
-                break
+                break;
         }
 
         g2d.setTransform(reset);
     }
     
-    
+    public String getType() {
+        return "Foreground";
+    }
 }

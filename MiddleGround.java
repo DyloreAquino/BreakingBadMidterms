@@ -20,4 +20,8 @@ public class MiddleGround implements DrawingObject {
         middleGround = new Rectangle(x + 0, y + 368, 800, 600, groundColor);
         middleGround.draw(g2d);
     }
+
+    public String getType() {
+        return "MiddleGround";
+    }
 }

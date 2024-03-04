@@ -32,5 +32,9 @@ public class Background implements DrawingObject{
         
     }
 
+    public String getType() {
+        return "Background";
+    }
+
     // another comment for github verify change
 }
