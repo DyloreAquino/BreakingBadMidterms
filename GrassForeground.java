@@ -19,7 +19,7 @@ public class GrassForeground implements DrawingObject{
     }
 
     public void moveRight() {
-        x += 8;
+        x += 9;
     }
 
     public void resetPosition() {
