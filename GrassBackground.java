@@ -2,6 +2,7 @@ import java.awt.*;
 import java.awt.geom.*;
 import javax.swing.*;
 
+
 public class GrassBackground implements DrawingObject{
 
     public int x, y;
@@ -11,6 +12,18 @@ public class GrassBackground implements DrawingObject{
     public GrassBackground(int x, int y){
         this.x = x;
         this.y = y + 6;
+    }
+
+    public void moveRight() {
+        x += 2;
+    } 
+
+    public void resetPosition() {
+        x = -400;
+    }
+
+    public int getXValue() {
+        return x;
     }
 
     public void draw(Graphics2D g2d){

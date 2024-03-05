@@ -23,24 +23,63 @@ public class RV implements DrawingObject {
 
     public int x, y;
     public int size;
+    public int acceleration, speed, maxspeed;
 
-    public RV(int x, int y, int size){
+    public boolean isSlowingDown, movedLeft, movedRight;
+
+    public RV(int x, int y, int size, int maxspeed){
         this.x = x;
         this.y = y;
         this.size = size;
+        acceleration = 1;
+        this.maxspeed = maxspeed;
+        speed = 0;
+        isSlowingDown = false;
+        movedLeft = false;
+        movedRight = false;
     }
 
     public void moveRight(){
 
-        x += 5;
-
+        if (maxspeed > speed) {
+            speed += acceleration;
+        }
+        x += speed;
+        
+        movedRight = true;
     }
 
     public void moveLeft(){
 
-        x -= 5;
+        if (maxspeed > speed) {
+            speed += acceleration;
+        }
+        x -= speed;
 
+        movedLeft = true;
     } 
+
+    public void isSlowingDown() {
+        isSlowingDown = true;
+    }
+
+    public void slowDown(){
+        if (isSlowingDown == true) {
+            if (speed > 0) {
+                speed -= 0.1;
+                if (movedRight)
+                    x += speed;
+                else if (movedLeft)
+                    x -= speed;
+            }
+        }
+        if (speed == 0) {
+            isSlowingDown = false;
+            movedLeft = false;
+            movedRight = false;
+        }
+        
+    }
 
     public void draw(Graphics2D g2d){
 

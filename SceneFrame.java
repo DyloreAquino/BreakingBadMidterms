@@ -8,13 +8,21 @@ public class SceneFrame {
 
     private JFrame frame;
     private SceneCanvas scneCanvas;
-    private ArrayList<Foreground> fgObjects;
+    private ArrayList<GrassForeground> gfgObjects;
+    private ArrayList<GrassBackground> gbgObjects;
+    private ArrayList<GrassMidground> gmgObjects;
+    private ArrayList<GrassOnground> gogObjects;
+    private RV brbad_rv;
 
     public SceneFrame() {
 
         frame = new JFrame();
         scneCanvas = new SceneCanvas(800, 600);
-        fgObjects = scneCanvas.getFG();
+        gfgObjects = scneCanvas.getFG();
+        gbgObjects = scneCanvas.getGBG();
+        gmgObjects = scneCanvas.getGMG();
+        gogObjects = scneCanvas.getGOG();
+        brbad_rv = scneCanvas.getRv();
     }
 
     public void setUpGUI() {
@@ -34,6 +42,7 @@ public class SceneFrame {
 
         KeyListener keyListen = new KeyListener() {
 
+            
             @Override
             public void keyTyped(KeyEvent ke) {
 
@@ -42,7 +51,7 @@ public class SceneFrame {
             @Override
             public void keyPressed(KeyEvent ke) {
 
-                RV brbad_rv = scneCanvas.getRv();
+                
 
                 switch (ke.getKeyChar()) {
                     case 'a':
@@ -66,7 +75,10 @@ public class SceneFrame {
 
             @Override
             public void keyReleased(KeyEvent ke) {
-
+                if (ke.getKeyChar() == 'a' || ke.getKeyChar() == 'd') {
+                    brbad_rv.isSlowingDown();
+                }
+                scneCanvas.repaint();
             }
 
         };
@@ -284,13 +296,31 @@ public class SceneFrame {
             @Override
             public void actionPerformed( ActionEvent ae ) {
                 scneCanvas.repaint();
-                for ( Foreground obj: fgObjects ) {
+                for ( GrassForeground obj: gfgObjects ) {
                     obj.moveRight();
                     if (obj.getXValue() > 1200) {
                         obj.resetPosition();
                     }
                 }
-                
+                for (GrassBackground obj: gbgObjects) {
+                    obj.moveRight();
+                    if (obj.getXValue() > 800) {
+                        obj.resetPosition();
+                    }
+                }
+                for (GrassMidground obj: gmgObjects) {
+                    obj.moveRight();
+                    if (obj.getXValue() > 800) {
+                        obj.resetPosition();
+                    }
+                }
+                for (GrassOnground obj: gogObjects) {
+                    obj.moveRight();
+                    if (obj.getXValue() > 800) {
+                        obj.resetPosition();
+                    }
+                }
+                brbad_rv.slowDown();
             }
         };
 
