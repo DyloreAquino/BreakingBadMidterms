@@ -7,7 +7,7 @@ public class OnGround implements DrawingObject {
 
     public Rectangle middleGround;
 
-    public Color groundColor = new Color(193, 151, 99);
+    public Color groundColor = new Color(164, 121, 67);
 
     public OnGround(int x, int y, int width, int height){
         this.x = x;
