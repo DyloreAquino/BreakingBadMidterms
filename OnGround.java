@@ -21,7 +21,4 @@ public class OnGround implements DrawingObject {
         middleGround.draw(g2d);
     }
 
-    public String getType() {
-        return "MiddleGround";
-    }
 }

@@ -12,6 +12,7 @@ public class SceneFrame {
     private ArrayList<GrassBackground> gbgObjects;
     private ArrayList<GrassMidground> gmgObjects;
     private ArrayList<GrassOnground> gogObjects;
+    private ArrayList<Cloud> cloudObjects;
     private RV brbad_rv;
 
     public SceneFrame() {
@@ -22,6 +23,7 @@ public class SceneFrame {
         gbgObjects = scneCanvas.getGBG();
         gmgObjects = scneCanvas.getGMG();
         gogObjects = scneCanvas.getGOG();
+        cloudObjects = scneCanvas.getClouds();
         brbad_rv = scneCanvas.getRv();
     }
 
@@ -315,6 +317,12 @@ public class SceneFrame {
                     }
                 }
                 for (GrassOnground obj: gogObjects) {
+                    obj.moveRight();
+                    if (obj.getXValue() > 800) {
+                        obj.resetPosition();
+                    }
+                }
+                for (Cloud obj: cloudObjects) {
                     obj.moveRight();
                     if (obj.getXValue() > 800) {
                         obj.resetPosition();

@@ -52,7 +52,4 @@ public class Rectangle implements DrawingObject{
         g2d.fill(rec);
     }
 
-    public String getType() {
-        return "Rectangle";
-    }
 }

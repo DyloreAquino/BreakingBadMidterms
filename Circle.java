@@ -22,8 +22,4 @@ public class Circle implements DrawingObject{
 
     }
 
-    public String getType() {
-        return "Circle";
-    }
-    
 }
