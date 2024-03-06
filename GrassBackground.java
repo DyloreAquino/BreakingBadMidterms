@@ -86,7 +86,4 @@ public class GrassBackground implements DrawingObject{
         g2d.setTransform(reset);
     }
 
-    public String getType() {
-        return "GrassBackground";
-    }
 }

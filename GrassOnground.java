@@ -79,7 +79,4 @@ public class GrassOnground implements DrawingObject{
         g2d.setTransform(reset);
     }
 
-    public String getType() {
-        return "GrassMidground";
-    }
 }
