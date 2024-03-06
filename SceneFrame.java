@@ -7,7 +7,7 @@ import javax.swing.*;
 public class SceneFrame {
 
     private JFrame frame;
-    private SceneCanvas scneCanvas;
+    private SceneCanvas sceneCanvas;
     private ArrayList<GrassForeground> gfgObjects;
     private ArrayList<GrassBackground> gbgObjects;
     private ArrayList<GrassMidground> gmgObjects;
@@ -15,29 +15,39 @@ public class SceneFrame {
     private ArrayList<Cloud> cloudObjects;
     private RV brbad_rv;
 
+    private Audio audiobg;
+
     public SceneFrame() {
 
         frame = new JFrame();
-        scneCanvas = new SceneCanvas(800, 600);
-        gfgObjects = scneCanvas.getFG();
-        gbgObjects = scneCanvas.getGBG();
-        gmgObjects = scneCanvas.getGMG();
-        gogObjects = scneCanvas.getGOG();
-        cloudObjects = scneCanvas.getClouds();
-        brbad_rv = scneCanvas.getRv();
+        sceneCanvas = new SceneCanvas(800, 600);
+        gfgObjects = sceneCanvas.getFG();
+        gbgObjects = sceneCanvas.getGBG();
+        gmgObjects = sceneCanvas.getGMG();
+        gogObjects = sceneCanvas.getGOG();
+        cloudObjects = sceneCanvas.getClouds();
+        brbad_rv = sceneCanvas.getRv();
+
+        audiobg = new Audio();
+
+        audiobg.setFile("BreakingBadTheme.wav");
+        audiobg.play();
+        audiobg.loop();
     }
 
     public void setUpGUI() {
 
         Container contentPane = frame.getContentPane();
-        scneCanvas.setPreferredSize(new Dimension(800, 600));
+        sceneCanvas.setPreferredSize(new Dimension(800, 600));
 
-        contentPane.add(scneCanvas, BorderLayout.CENTER);
+        contentPane.add(sceneCanvas, BorderLayout.CENTER);
 
         frame.setTitle("Midterm Project - Aquino - Castillo");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
+
+        
     }
 
     public void setUpKeyListen() {
@@ -71,7 +81,7 @@ public class SceneFrame {
                     default:
                         break;
                 }
-                scneCanvas.repaint();
+                sceneCanvas.repaint();
 
             }
 
@@ -80,7 +90,7 @@ public class SceneFrame {
                 if (ke.getKeyChar() == 'a' || ke.getKeyChar() == 'd') {
                     brbad_rv.isSlowingDown();
                 }
-                scneCanvas.repaint();
+                sceneCanvas.repaint();
             }
 
         };
@@ -297,7 +307,7 @@ public class SceneFrame {
 
             @Override
             public void actionPerformed( ActionEvent ae ) {
-                scneCanvas.repaint();
+                sceneCanvas.repaint();
                 for ( GrassForeground obj: gfgObjects ) {
                     obj.moveRight();
                     if (obj.getXValue() > 1200) {

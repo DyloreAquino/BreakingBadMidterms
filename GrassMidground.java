@@ -19,7 +19,7 @@ public class GrassMidground implements DrawingObject{
     }
 
     public void moveRight() {
-        x += 4;
+        x += 5;
     } 
 
     public void resetPosition() {

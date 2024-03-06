@@ -22,7 +22,7 @@ public class SceneCanvas extends JComponent{
     public SceneCanvas(int w, int h){
         width = w;
         height = h;
-        rv = new RV(-50, 50, 3, 10); 
+        rv = new RV(-50, 50, 3, 15); 
         drawingObjects = new ArrayList<DrawingObject>();
         gfgObjects = new ArrayList<GrassForeground>();
         gmgObjects = new ArrayList<GrassMidground>();
