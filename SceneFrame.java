@@ -117,7 +117,7 @@ public class SceneFrame {
             String audio4Title = "hi my name is walter hartwell white.wav";
             String audio5Title = "you either run from things or you face them.wav";
             String audio6Title = "Yeah, Science!.wav";
-            String audio7Title = "Asian gibberish.wav";
+            String audio7Title = "AsianMisterWhite.wav";
 
             @Override
             public void keyTyped(KeyEvent ke) {
@@ -316,25 +316,25 @@ public class SceneFrame {
                 }
                 for (GrassBackground obj: gbgObjects) {
                     obj.moveRight();
-                    if (obj.getXValue() > 800) {
+                    if (obj.getXValue() > 1200) {
                         obj.resetPosition();
                     }
                 }
                 for (GrassMidground obj: gmgObjects) {
                     obj.moveRight();
-                    if (obj.getXValue() > 800) {
+                    if (obj.getXValue() > 1200) {
                         obj.resetPosition();
                     }
                 }
                 for (GrassOnground obj: gogObjects) {
                     obj.moveRight();
-                    if (obj.getXValue() > 800) {
+                    if (obj.getXValue() > 1200) {
                         obj.resetPosition();
                     }
                 }
                 for (Cloud obj: cloudObjects) {
                     obj.moveRight();
-                    if (obj.getXValue() > 800) {
+                    if (obj.getXValue() > 1200) {
                         obj.resetPosition();
                     }
                 }
