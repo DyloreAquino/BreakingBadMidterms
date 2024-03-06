@@ -1,3 +1,23 @@
+/**
+	This is the class made for creating the RV and allowing for its movement
+	
+	@author Jerold Luther P. Aquino (230413)
+    @author Hanzo Ricardo M. Castillo (231365)
+	@version March 6, 2024
+	
+	I have not discussed the Java language code in my program 
+	with anyone other than my instructor or the teaching assistants 
+	assigned to this course.
+
+	I have not used Java language code obtained from another student, 
+	or any other unauthorized source, either modified or unmodified.
+
+	If any Java language code or documentation used in my program 
+	was obtained from another source, such as a textbook or website, 
+	that has been clearly noted with a proper citation in the comments 
+	of my program.
+**/
+
 import java.awt.*;
 import java.awt.geom.*;
 
@@ -29,10 +49,15 @@ public class RV implements DrawingObject {
 
     public boolean isSlowingDown, movedLeft, movedRight;
 
-    public RV(int x, int y, int size, int maxspeed){
+    /**
+     * Constructor initializes the RV attributes
+     * @param x x coordinate
+     * @param y y coordinate
+     * @param maxspeed the maximum speed of the RV, to limit the movement
+     */
+    public RV(int x, int y, int maxspeed){
         this.x = x;
         this.y = y;
-        this.size = size;
         acceleration = 1;
         this.maxspeed = maxspeed;
         speed = 0;
@@ -41,40 +66,58 @@ public class RV implements DrawingObject {
         movedRight = false;
     }
 
+    /**
+     * moves the RV right
+     */
     public void moveRight(){
 
+        // Checks first if speed has reached maxspeed before adding to speed
         if (maxspeed > speed) {
             speed += acceleration;
         }
+        // Adds speed to the x coordinate
         x += speed;
         
         movedRight = true;
     }
 
+    /**
+     * Moves the RV left
+     */
     public void moveLeft(){
 
         if (maxspeed > speed) {
             speed += acceleration;
         }
+        // The difference with moveRight is x is speed is subtracted from x.
         x -= speed;
 
         movedLeft = true;
     } 
 
+    /**
+     * Checks if the car is slowing down
+     */
     public void isSlowingDown() {
         isSlowingDown = true;
     }
 
+    /**
+     * Slows down the car by easing in to 0 speed
+     */
     public void slowDown(){
+        // Checks if slowing down is true
         if (isSlowingDown == true) {
             if (speed > 0) {
                 speed -= 0.1;
+                // Different operations for when RV moved right or left
                 if (movedRight)
                     x += speed;
                 else if (movedLeft)
                     x -= speed;
             }
         }
+        // Once speed has turned zero, bring booleans back to false
         if (speed == 0) {
             isSlowingDown = false;
             movedLeft = false;
@@ -83,6 +126,9 @@ public class RV implements DrawingObject {
         
     }
 
+    /**
+     * Draws the necessary elements
+     */
     public void draw(Graphics2D g2d){
 
         AffineTransform reset = g2d.getTransform();
@@ -177,17 +223,6 @@ public class RV implements DrawingObject {
         wheel.draw(g2d);
         g2d.translate(340, 0);
         wheel.draw(g2d);
-
-
-
-
-
-        //this is for evident change in gtihub
-
-        
-
-
-
         
         g2d.setTransform(reset);
     }

@@ -1,3 +1,25 @@
+/**
+	This is the scene Frame where all events are handled and the GUI is setup.
+    The keylisteners for both audio and movement are handled here.
+    The actionlistener for the timer of the animation are also handled here.
+	
+	@author Jerold Luther P. Aquino (230413)
+    @author Hanzo Ricardo M. Castillo (231365)
+	@version March 6, 2024
+	
+	I have not discussed the Java language code in my program 
+	with anyone other than my instructor or the teaching assistants 
+	assigned to this course.
+
+	I have not used Java language code obtained from another student, 
+	or any other unauthorized source, either modified or unmodified.
+
+	If any Java language code or documentation used in my program 
+	was obtained from another source, such as a textbook or website, 
+	that has been clearly noted with a proper citation in the comments 
+	of my program.
+**/
+
 import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
@@ -17,6 +39,10 @@ public class SceneFrame {
 
     private Audio audiobg;
 
+    /**
+     * Constructor initializes the SceneFrame, its attributes, and gets certain objects from sceneCanvas for animating
+     * it also plays the background audio from the start
+     */
     public SceneFrame() {
 
         frame = new JFrame();
@@ -35,6 +61,9 @@ public class SceneFrame {
         audiobg.loop();
     }
 
+    /**
+     * Sets up the GUI for the animation
+     */
     public void setUpGUI() {
 
         Container contentPane = frame.getContentPane();
@@ -49,7 +78,10 @@ public class SceneFrame {
 
         
     }
-
+    /**
+     * Sets up the KeyListener as an anonymous class
+     * This class is for listening for input to move the RV
+     */
     public void setUpKeyListen() {
 
         KeyListener keyListen = new KeyListener() {
@@ -99,6 +131,15 @@ public class SceneFrame {
 
     }
 
+    /**
+     * Sets up keylistener for audio
+     * allows for listening to input for playing sound effects
+     * 
+     * Guided by these references:
+     * - https://stackoverflow.com/questions/10876491/how-to-use-keylistener?fbclid=IwAR0i6TTuABwgG7j8D5rbQpL54_oFG84MC0J8hDYtk9Fkfeh081qEUsO4onk 
+     * - https://www.geeksforgeeks.org/java-keylistener-in-awt/?fbclid=IwAR2r28nW5UYK73bzSbGMTMMDYk-IRMUCqhn0ON3ZWZZtikrjr7RBMR2AqmE 
+     * - https://www.youtube.com/watch?v=BJ7fr9XwS2o
+     */
     public void setUpKeyListenforAudio() {
 
         KeyListener keyListen2 = new KeyListener() {
@@ -130,49 +171,49 @@ public class SceneFrame {
             public void keyPressed(KeyEvent ke) {
 
                 switch (ke.getKeyChar()) {
-                    case 'm':
+                    case 'q':
 
                         audio1.setFile(audio1Title);
                         audio1.play();
 
                         break;
 
-                    case 'j':
+                    case 'w':
                     
                         audio2.setFile(audio2Title);
                         audio2.play();
 
                         break;
                     
-                    case 'k':
+                    case 'e':
 
                         audio3.setFile(audio3Title);
                         audio3.play();
 
                         break;
 
-                    case 'l':
+                    case 'r':
                     
                         audio4.setFile(audio4Title);
                         audio4.play();
 
                         break;
 
-                    case 'i':
+                    case 't':
                     
                         audio5.setFile(audio5Title);
                         audio5.play();
 
                         break;
 
-                    case 'o':
+                    case 'y':
                     
                         audio6.setFile(audio6Title);
                         audio6.play();
 
                         break;
 
-                    case 'p':
+                    case 'u':
                     
                         audio7.setFile(audio7Title);
                         audio7.play();
@@ -302,15 +343,27 @@ public class SceneFrame {
 
     }
 
+    /**
+     * Sets up time listener as an inner class which implements ActionListener
+     * 
+     * Guided by:
+     * - https://www.youtube.com/watch?v=tHNWIWxRDDA 
+     */
     public void setUpTimeListen() {
         class TimeListener implements ActionListener {
 
             @Override
             public void actionPerformed( ActionEvent ae ) {
+                // We repaint each frame
                 sceneCanvas.repaint();
+
+                // We call for loops for each object in the ArrayLists and call the necessary methods
                 for ( GrassForeground obj: gfgObjects ) {
+                    // We move right each frame,
                     obj.moveRight();
+                    // Once the x value of the object has risen over 1200 (which is beyond the screen)
                     if (obj.getXValue() > 1200) {
+                        // We then spawn it somewhere to the left, so it can move again
                         obj.resetPosition();
                     }
                 }
@@ -338,12 +391,13 @@ public class SceneFrame {
                         obj.resetPosition();
                     }
                 }
+                // allows for easing in the slow down of the RV
                 brbad_rv.slowDown();
             }
         };
 
         ActionListener timeListener = new TimeListener();
-        Timer timer = new Timer(1, timeListener);
+        Timer timer = new Timer(10, timeListener);
         timer.start();
     }
 

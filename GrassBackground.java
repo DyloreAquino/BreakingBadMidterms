@@ -1,6 +1,25 @@
+/**
+	This is class made for drawing the grasses located in the background.
+	
+	@author Jerold Luther P. Aquino (230413)
+    @author Hanzo Ricardo M. Castillo (231365)
+	@version March 6, 2024
+	
+	I have not discussed the Java language code in my program 
+	with anyone other than my instructor or the teaching assistants 
+	assigned to this course.
+
+	I have not used Java language code obtained from another student, 
+	or any other unauthorized source, either modified or unmodified.
+
+	If any Java language code or documentation used in my program 
+	was obtained from another source, such as a textbook or website, 
+	that has been clearly noted with a proper citation in the comments 
+	of my program.
+**/
+
 import java.awt.*;
 import java.awt.geom.*;
-import javax.swing.*;
 
 
 public class GrassBackground implements DrawingObject{
@@ -9,23 +28,41 @@ public class GrassBackground implements DrawingObject{
 
     public Color grassColor = new Color(194, 154, 106);
 
+    /**
+     * Constructor initializes the position of the grass
+     * @param x x coordinate
+     * @param y y coordinate
+     */
     public GrassBackground(int x, int y){
         this.x = x;
         this.y = y + 6;
     }
 
+    /**
+     * moves the grass right
+     */
     public void moveRight() {
         x += 2;
     } 
 
+    /**
+     * Resets the position somewhere to the left of the screen
+     */
     public void resetPosition() {
         x = -400;
     }
-
+    
+    /**
+     * Gets the x coordinate
+     * @return the x coordinate
+     */
     public int getXValue() {
         return x;
-    }
+    }   
 
+    /**
+     * Draws the necessary elements
+     */
     public void draw(Graphics2D g2d){
 
         AffineTransform reset = g2d.getTransform();
