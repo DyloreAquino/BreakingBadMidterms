@@ -7,6 +7,8 @@ public class RV implements DrawingObject {
     public Circle windowBack, middleTopVent1, middleTopVent2, bulletHole1, bulletHole2, wheel;
     public Line frontmid2Window, topStrip, middleStrip, botStrip, sideStrip1, sideStrip2;
     public Square doorOutline, frontTopVent;
+    public FrontVan frontVan, windowFrontVan;
+    public BackVan backVan;
 
     public Color colorBulletHole = new Color(88, 60, 24);
     public Color colorBody = new Color(189, 159, 121);
@@ -106,30 +108,16 @@ public class RV implements DrawingObject {
         front2Van = new Rectangle(x + 105, y + 280,  95,  45, colorBody);
         front2Van.draw(g2d);
 
-        Path2D.Double frontVan = new Path2D.Double();
-        frontVan.moveTo(x + 200, y + 175);
-        frontVan.lineTo(x + 105, y + 280);
-        frontVan.lineTo(x + 200, y + 280);
-        frontVan.closePath();
-        g2d.setColor(colorBody);
-        g2d.fill(frontVan);
+        frontVan = new FrontVan(x + 200, x + 105, x + 200, y + 175, y + 280, y + 280, colorBody);
+        frontVan.draw(g2d);
 
-        Path2D.Double backVan = new Path2D.Double();
-        backVan.moveTo(x + 575, y + 175);
-        backVan.lineTo(x + 575, y + 325);
-        backVan.curveTo(x + 670, y + 225, x + 670, y + 175, x + 575, y + 175);
-        g2d.setColor(colorBody);
-        g2d.fill(backVan);
+        backVan = new BackVan(x + 575, x + 575, x + 670, x + 670, x + 575, y + 175, y + 325, y + 225, y + 175, y + 175, colorBody);
+        backVan.draw(g2d);
 
         g2d.translate(-25, 18);
 
-        Path2D.Double frontWindow = new Path2D.Double();
-        frontWindow.moveTo(x + 205, y + 185);
-        frontWindow.lineTo(x + 151, y + 255);
-        frontWindow.lineTo(x + 205, y + 255);
-        frontWindow.closePath();
-        g2d.setColor(colorWindow);
-        g2d.fill(frontWindow);
+        windowFrontVan = new FrontVan(x + 205, x + 151, x + 205, y + 185, y + 255, y + 255, colorWindow);
+        windowFrontVan.draw(g2d);
 
         frontmid2Window = new Line(x + 215, y + 189, x + 215, y + 249,  10, color2Window);
         frontmid2Window.draw(g2d);
