@@ -13,9 +13,10 @@ public class SceneCanvas extends JComponent{
     public ArrayList<GrassMidground> gmgObjects;
     public ArrayList<GrassBackground> gbgObjects;
     public ArrayList<GrassOnground> gogObjects;
+    public ArrayList<Cloud> cloudObjects;
     
-
     public RV rv;
+
     public Random rand;
 
     public SceneCanvas(int w, int h){
@@ -27,6 +28,7 @@ public class SceneCanvas extends JComponent{
         gmgObjects = new ArrayList<GrassMidground>();
         gbgObjects = new ArrayList<GrassBackground>();
         gogObjects = new ArrayList<GrassOnground>();
+        cloudObjects = new ArrayList<Cloud>();
         rand = new Random();
 
         gogObjects.add(new GrassOnground(width, 550, 0));
@@ -51,6 +53,11 @@ public class SceneCanvas extends JComponent{
         gfgObjects.add(new GrassForeground(-width, height, 3));
         gfgObjects.add(new GrassForeground(-width, height, 4));
 
+        cloudObjects.add(new Cloud(rand.nextInt(800) - 800, rand.nextInt(100)));
+        cloudObjects.add(new Cloud(rand.nextInt(800) - 800, rand.nextInt(100)));
+        cloudObjects.add(new Cloud(rand.nextInt(800) - 800, rand.nextInt(100)));
+        cloudObjects.add(new Cloud(rand.nextInt(800) - 800, rand.nextInt(100)));
+
         drawingObjects.add(new Background(w, 400));
         drawingObjects.add(rv);
         drawingObjects.add(new MiddleGround(0, 0, w, h));
@@ -68,6 +75,10 @@ public class SceneCanvas extends JComponent{
         g2d.setRenderingHints(rh);
 
         drawingObjects.get(0).draw(g2d);
+
+        for (Cloud obj: cloudObjects) {
+            obj.draw(g2d);
+        }
         
         for (GrassBackground obj: gbgObjects) {
             obj.draw(g2d);
@@ -115,6 +126,11 @@ public class SceneCanvas extends JComponent{
     public ArrayList<GrassOnground> getGOG() {
 
         return gogObjects;
+    }
+
+    public ArrayList<Cloud> getClouds() {
+
+        return cloudObjects;
     }
     
 }

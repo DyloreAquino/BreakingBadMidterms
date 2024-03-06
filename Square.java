@@ -21,9 +21,5 @@ public class Square implements DrawingObject{
         g2d.fill(sqr);
 
     }
-
-    public String getType() {
-        return "Square";
-    }
     
 }
